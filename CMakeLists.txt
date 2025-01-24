@@ -8,4 +8,6 @@ add_executable(LaboratorioProgrammazione main.cpp
         Tingresso.cpp
         Tingresso.h
         Tuscita.cpp
-        Tuscita.h)
+        Tuscita.h
+        ContoCorrente.cpp
+        ContoCorrente.h)

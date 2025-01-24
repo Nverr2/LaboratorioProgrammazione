@@ -67,6 +67,12 @@ build CMakeFiles/LaboratorioProgrammazione.dir/Tuscita.cpp.obj: CXX_COMPILER__La
   OBJECT_DIR = CMakeFiles\LaboratorioProgrammazione.dir
   OBJECT_FILE_DIR = CMakeFiles\LaboratorioProgrammazione.dir
 
+build CMakeFiles/LaboratorioProgrammazione.dir/ContoCorrente.cpp.obj: CXX_COMPILER__LaboratorioProgrammazione_unscanned_Debug C$:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/ContoCorrente.cpp || cmake_object_order_depends_target_LaboratorioProgrammazione
+  DEP_FILE = CMakeFiles\LaboratorioProgrammazione.dir\ContoCorrente.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\LaboratorioProgrammazione.dir
+  OBJECT_FILE_DIR = CMakeFiles\LaboratorioProgrammazione.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target LaboratorioProgrammazione
@@ -75,7 +81,7 @@ build CMakeFiles/LaboratorioProgrammazione.dir/Tuscita.cpp.obj: CXX_COMPILER__La
 #############################################
 # Link the executable LaboratorioProgrammazione.exe
 
-build LaboratorioProgrammazione.exe: CXX_EXECUTABLE_LINKER__LaboratorioProgrammazione_Debug CMakeFiles/LaboratorioProgrammazione.dir/main.cpp.obj CMakeFiles/LaboratorioProgrammazione.dir/Tingresso.cpp.obj CMakeFiles/LaboratorioProgrammazione.dir/Tuscita.cpp.obj
+build LaboratorioProgrammazione.exe: CXX_EXECUTABLE_LINKER__LaboratorioProgrammazione_Debug CMakeFiles/LaboratorioProgrammazione.dir/main.cpp.obj CMakeFiles/LaboratorioProgrammazione.dir/Tingresso.cpp.obj CMakeFiles/LaboratorioProgrammazione.dir/Tuscita.cpp.obj CMakeFiles/LaboratorioProgrammazione.dir/ContoCorrente.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\LaboratorioProgrammazione.dir
