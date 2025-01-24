@@ -7,3 +7,8 @@
 void Tingresso::stampa() const {
     cout << "\nTRANSAZIONE IN ENTRATA: Descrizione: " << descrizione << ", Mittente: " << mittente << "\nImporto: " << " €";
 }
+
+void Tingresso::salvaFile(ofstream &outfile)const {
+    outfile << "Entrata, mittente: " << mittente << ",";
+    Transazione::salvaFile(outfile);
+}

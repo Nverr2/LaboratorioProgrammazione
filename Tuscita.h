@@ -13,6 +13,13 @@ class Tuscita : public Transazione{
         Tuscita(string& desc,double imp,string& dest) : Transazione(desc,imp), destinatario(dest){
         }
         void stampa()const override;
+        string getDestinatario()const{
+            return destinatario;
+        }
+        void salvaFile(ofstream& outfile) const override;
+        string printType()const override{
+            return "uscita";
+        }
 
     private:
         string destinatario;

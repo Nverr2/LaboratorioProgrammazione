@@ -13,6 +13,14 @@ class Tingresso : public Transazione{
         Tingresso(string& desc, double imp,string& mit) : Transazione(desc,imp), mittente(mit){
         }
         void stampa() const override;
+
+        string getMittente()const{
+            return mittente;
+        }
+        string printType()const override{
+            return "entrata";
+        }
+        void salvaFile(ofstream& outfile) const override;
     private:
         string mittente;
 };

@@ -6,20 +6,20 @@
 #define LABORATORIOPROGRAMMAZIONE_CONTOCORRENTE_H
 
 using namespace std;
-#include "vector";
+#include "vector"
 #include "Transazione.h"
 
 class ContoCorrente {
     private:
        vector<Transazione *>transazioni;
+       double saldo;
 
     public:
         ContoCorrente();
         ~ContoCorrente();
-        void addTransazione(Transazione* t){
-            transazioni.push_back(t);
-        }
+        void addTransazione(Transazione* t,const string& filename);
         void stampaTransazioni()const;
+        void stampaDaFile()const;
 };
 
 

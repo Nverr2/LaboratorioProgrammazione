@@ -7,6 +7,7 @@
 
 #include <string>
 #include "iostream"
+#include "fstream"
 
 using namespace std;
 class Transazione{
@@ -20,6 +21,13 @@ class Transazione{
         }
         virtual ~Transazione() = default;
         virtual void stampa()const = 0;
+        double getImporto()const{
+            return importo;
+        }
+        virtual void salvaFile(ofstream& outfile)const{
+            outfile << importo << "€" << "\n";
+        }
+        virtual string printType()const=0;
 };
 
 #endif //LABORATORIOPROGRAMMAZIONE_TRANSAZIONE_H
