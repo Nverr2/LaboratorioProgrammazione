@@ -16,41 +16,54 @@ ContoCorrente::~ContoCorrente() {
 }
 
 void ContoCorrente::stampaTransazioni() const {
-    for (const auto& t : transazioni) {
-        t->stampa();
+    if(!transazioni.empty()){
+        for (const auto& t : transazioni) {
+            t->stampa();
+        }
+        cout << "\nSaldo attuale: " << saldo << " euro" << endl;
     }
-    cout << "\nSaldo attuale: " << saldo << " €" << endl;
+    else
+        cout << "Nessuna transazione registrata, saldo: 0 euro" << endl;
+
 }
 
-void ContoCorrente::addTransazione(Transazione *t, const string& filename) {
+void ContoCorrente::addTransazione(Transazione *t) {
     if(t->printType() == "uscita"){   //verifico di avere un saldo sufficiente per effettuare la transazione
-        if(saldo-t->getImporto()<0){
+        if(saldo+(t->getImporto())<0){
             cout << "Saldo insufficiente per effettuare la transazione!" << endl;
             return;
         }
     }
     transazioni.push_back(t);
-    ofstream outfile("fileTransazioni.txt");
-    if(outfile.is_open()){
+
+    try{
+        ofstream outfile("fileTransazioni.txt", ios::app);
         t->salvaFile(outfile);  //salvo la transazione nel file subito dopo averla aggiunta al vector
         cout << "TRANSAZIONE REGISTRATA!" << endl;
-
+        outfile.close();
     }
-    else{
+    catch(exception){
         cout << "ERRORE APERTURA FILE!" << endl;
     }
+    saldo=saldo+t->getImporto();
 
 }
 
 void ContoCorrente::stampaDaFile() const {
-    ifstream infile("fileTransazioni.txt");
-    if(infile.is_open()){
+    cout << "STAMPA DA FILE:\n";
+    try{
+        ifstream infile("fileTransazioni.txt");
         string line;
         while (getline(infile,line)){
             cout << line << endl;
         }
+        infile.close();
     }
-    else{
+    catch(exception){
         cout << "ERRORE APERTURA FILE!" << endl;
     }
+}
+
+void ContoCorrente::clearFile() {
+    ofstream outfile("fileTransazioni.txt", ios::trunc);
 }

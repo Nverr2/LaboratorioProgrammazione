@@ -16,7 +16,7 @@ class Transazione{
         double importo;
 
     public:
-        Transazione(string& desc,double imp) : descrizione(desc), importo(imp){
+        Transazione(string desc,double imp) : descrizione(desc), importo(imp){
 
         }
         virtual ~Transazione() = default;
@@ -25,7 +25,7 @@ class Transazione{
             return importo;
         }
         virtual void salvaFile(ofstream& outfile)const{
-            outfile << importo << "€" << "\n";
+            outfile << importo << " euro" << "\n";
         }
         virtual string printType()const=0;
 };
