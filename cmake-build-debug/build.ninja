@@ -55,8 +55,14 @@ build CMakeFiles/LaboratorioProgrammazione.dir/main.cpp.obj: CXX_COMPILER__Labor
   OBJECT_DIR = CMakeFiles\LaboratorioProgrammazione.dir
   OBJECT_FILE_DIR = CMakeFiles\LaboratorioProgrammazione.dir
 
-build CMakeFiles/LaboratorioProgrammazione.dir/FileManager.cpp.obj: CXX_COMPILER__LaboratorioProgrammazione_unscanned_Debug C$:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/FileManager.cpp || cmake_object_order_depends_target_LaboratorioProgrammazione
-  DEP_FILE = CMakeFiles\LaboratorioProgrammazione.dir\FileManager.cpp.obj.d
+build CMakeFiles/LaboratorioProgrammazione.dir/Tingresso.cpp.obj: CXX_COMPILER__LaboratorioProgrammazione_unscanned_Debug C$:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/Tingresso.cpp || cmake_object_order_depends_target_LaboratorioProgrammazione
+  DEP_FILE = CMakeFiles\LaboratorioProgrammazione.dir\Tingresso.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\LaboratorioProgrammazione.dir
+  OBJECT_FILE_DIR = CMakeFiles\LaboratorioProgrammazione.dir
+
+build CMakeFiles/LaboratorioProgrammazione.dir/Tuscita.cpp.obj: CXX_COMPILER__LaboratorioProgrammazione_unscanned_Debug C$:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/Tuscita.cpp || cmake_object_order_depends_target_LaboratorioProgrammazione
+  DEP_FILE = CMakeFiles\LaboratorioProgrammazione.dir\Tuscita.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\LaboratorioProgrammazione.dir
   OBJECT_FILE_DIR = CMakeFiles\LaboratorioProgrammazione.dir
@@ -69,7 +75,7 @@ build CMakeFiles/LaboratorioProgrammazione.dir/FileManager.cpp.obj: CXX_COMPILER
 #############################################
 # Link the executable LaboratorioProgrammazione.exe
 
-build LaboratorioProgrammazione.exe: CXX_EXECUTABLE_LINKER__LaboratorioProgrammazione_Debug CMakeFiles/LaboratorioProgrammazione.dir/main.cpp.obj CMakeFiles/LaboratorioProgrammazione.dir/FileManager.cpp.obj
+build LaboratorioProgrammazione.exe: CXX_EXECUTABLE_LINKER__LaboratorioProgrammazione_Debug CMakeFiles/LaboratorioProgrammazione.dir/main.cpp.obj CMakeFiles/LaboratorioProgrammazione.dir/Tingresso.cpp.obj CMakeFiles/LaboratorioProgrammazione.dir/Tuscita.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\LaboratorioProgrammazione.dir
