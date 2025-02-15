@@ -35,6 +35,7 @@ void ContoCorrente::addTransazione(Transazione *t) {
         }
     }
     transazioni.push_back(t);
+    saldo=saldo+t->getImporto();    //aggiorno il saldo
 
     try{
         ofstream outfile("fileTransazioni.txt", ios::app);
@@ -45,8 +46,6 @@ void ContoCorrente::addTransazione(Transazione *t) {
     catch(exception){
         cout << "ERRORE APERTURA FILE!" << endl;
     }
-    saldo=saldo+t->getImporto();
-
 }
 
 void ContoCorrente::stampaDaFile() const {
@@ -57,6 +56,7 @@ void ContoCorrente::stampaDaFile() const {
         while (getline(infile,line)){
             cout << line << endl;
         }
+        cout << "\nSaldo attuale: " << saldo << " euro" << endl;
         infile.close();
     }
     catch(exception){
@@ -65,5 +65,10 @@ void ContoCorrente::stampaDaFile() const {
 }
 
 void ContoCorrente::clearFile() {
-    ofstream outfile("fileTransazioni.txt", ios::trunc);
+    try{
+        ofstream outfile("fileTransazioni.txt", ios::trunc);
+    }
+    catch(exception e){
+        cout << "errore";
+    }
 }

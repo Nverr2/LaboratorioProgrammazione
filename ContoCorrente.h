@@ -21,6 +21,9 @@ class ContoCorrente {
         void stampaTransazioni()const;
         void stampaDaFile()const;
         void clearFile();
+        double getSaldo()const{
+            return saldo;
+        }
 };
 
 

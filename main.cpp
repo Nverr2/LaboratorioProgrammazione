@@ -14,7 +14,10 @@ int main() {
     conto.addTransazione(new Tingresso("Stipendio", 1340, "Lavoro"));
     conto.addTransazione(new Tingresso("Regalo natale", 50, "Nonna"));
     conto.addTransazione(new Tuscita("Shopping", 150, "Zara"));
+   // conto.addTransazione(new Tuscita("Multe", 1240, "Polizia municipale"));
     conto.stampaTransazioni();
     conto.stampaDaFile();
+
+
     return 0;
 }
