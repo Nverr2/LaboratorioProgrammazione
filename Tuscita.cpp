@@ -9,6 +9,6 @@ void Tuscita::stampa() const {
 }
 
 void Tuscita::salvaFile(ofstream &outfile) const {
-    outfile << "Uscita, destinatario: " << destinatario << ", ";
+    outfile << "Uscita, " << destinatario << ", ";
     Transazione::salvaFile(outfile);
 }

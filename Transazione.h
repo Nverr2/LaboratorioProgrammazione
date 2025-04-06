@@ -24,8 +24,11 @@ class Transazione{
         double getImporto()const{
             return importo;
         }
+        void setImporto(double imp){
+            importo = imp;
+        }
         virtual void salvaFile(ofstream& outfile)const{
-            outfile << importo << " euro" << "\n";
+            outfile << descrizione << ", " << importo << "\n";
         }
         virtual string printType()const=0;
 };

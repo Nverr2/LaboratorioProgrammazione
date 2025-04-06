@@ -17,6 +17,10 @@ class Tuscita : public Transazione{
         string getDestinatario()const{
             return destinatario;
         }
+        void setDestinatario(string dest)
+        {
+            destinatario = dest;
+        }
         void salvaFile(ofstream& outfile) const override;
         string printType()const override{
             return "uscita";

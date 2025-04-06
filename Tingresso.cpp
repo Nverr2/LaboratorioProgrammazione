@@ -9,6 +9,6 @@ void Tingresso::stampa() const {
 }
 
 void Tingresso::salvaFile(ofstream &outfile)const {
-    outfile << "Entrata, mittente: " << mittente << ", ";
+    outfile << "Entrata, " << mittente << ", ";
     Transazione::salvaFile(outfile);
 }

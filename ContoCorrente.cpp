@@ -3,6 +3,10 @@
 //
 
 #include "ContoCorrente.h"
+#include <sstream>
+
+#include "Tingresso.h"
+#include "Tuscita.h"
 
 ContoCorrente::ContoCorrente() {
     saldo=0;
@@ -56,7 +60,8 @@ void ContoCorrente::stampaDaFile() const {
         while (getline(infile,line)){
             cout << line << endl;
         }
-        cout << "\nSaldo attuale: " << saldo << " euro" << endl;
+
+       cout << "\nSaldo attuale: " << saldo << " euro" << endl;
         infile.close();
     }
     catch(exception){
@@ -71,4 +76,46 @@ void ContoCorrente::clearFile() {
     catch(exception e){
         cout << "errore";
     }
+}
+
+void ContoCorrente::letturaFile(){
+    try
+    {
+        ifstream infile("fileTransazioni.txt");
+        string line;
+        while (getline(infile,line))
+        {
+            istringstream iss(line);
+            string campo;
+            vector<std::string> campi;
+            double imp;
+            string tipo,md,desc; //md = mittente/destinatario
+
+            while (getline(iss, campo, ',')) {  //leggo tutti i campi della riga e li salvo
+                campi.push_back(campo);
+            }
+
+            tipo = campi[0];
+            md = campi[1];
+            desc = campi[2];
+            imp = stod(campi[3]);
+
+            Transazione *t;
+            if (tipo == "uscita"){
+                t = new Tuscita(desc,imp,md);
+            }
+            else{
+                t = new Tingresso(desc,imp,md);
+            }
+            saldo+=imp;
+            transazioni.push_back(t);
+        }
+        cout << "LETTURA FILE COMPLETATA!" << endl;
+    }
+    catch(exception e)
+    {
+        cout << "ERRORE: " << e.what() << endl;
+    }
+
+
 }

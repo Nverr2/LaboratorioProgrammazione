@@ -17,6 +17,10 @@ class Tingresso : public Transazione{
         string getMittente()const{
             return mittente;
         }
+        void setMittente(string mit)
+        {
+            mittente = mit;
+        }
         string printType()const override{
             return "entrata";
         }

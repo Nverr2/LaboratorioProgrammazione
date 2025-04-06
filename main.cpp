@@ -8,13 +8,13 @@
 int main() {
     ContoCorrente conto;
 
-    conto.clearFile();
-    conto.stampaTransazioni();
-    conto.addTransazione(new Tuscita("Pranzo", 10, "Pizzeria"));
-    conto.addTransazione(new Tingresso("Stipendio", 1340, "Lavoro"));
-    conto.addTransazione(new Tingresso("Regalo natale", 50, "Nonna"));
-    conto.addTransazione(new Tuscita("Shopping", 150, "Zara"));
+    conto.letturaFile();
+    //conto.clearFile();
+   // conto.addTransazione(new Tingresso("Stipendio", 1340, "Lavoro"));     //transazione già memorizzzata
+   // conto.addTransazione(new Tingresso("Regalo natale", 50, "Nonna"));    //transazione già memorizzata
+  //  conto.addTransazione(new Tuscita("Shopping", 150, "Zara"));           //transazione già memorizzata
    // conto.addTransazione(new Tuscita("Multe", 1240, "Polizia municipale"));
+    // conto.addTransazione(new Tuscita("Pranzo", 10, "Pizzeria"));          //transazione già memorizzata
     conto.stampaTransazioni();
     conto.stampaDaFile();
 
