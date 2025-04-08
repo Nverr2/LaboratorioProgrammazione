@@ -12,13 +12,6 @@ ContoCorrente::ContoCorrente() {
     saldo=0;
 }
 
-ContoCorrente::~ContoCorrente() {
-    for (auto t : transazioni) {
-        delete t;
-    }
-
-}
-
 void ContoCorrente::stampaTransazioni() const {
     if(!transazioni.empty()){
         for (const auto& t : transazioni) {
@@ -31,23 +24,23 @@ void ContoCorrente::stampaTransazioni() const {
 
 }
 
-void ContoCorrente::addTransazione(Transazione *t) {
+void ContoCorrente::addTransazione(const unique_ptr<Transazione>& t) {
     if(t->printType() == "uscita"){   //verifico di avere un saldo sufficiente per effettuare la transazione
         if(saldo+(t->getImporto())<0){
             cout << "Saldo insufficiente per effettuare la transazione!" << endl;
             return;
         }
     }
-    transazioni.push_back(t);
+    transazioni.push_back(move(t));
     saldo=saldo+t->getImporto();    //aggiorno il saldo
 
-    try{
+    try{    //salvo la transazione nel file subito dopo averla aggiunta al vector
         ofstream outfile("fileTransazioni.txt", ios::app);
-        t->salvaFile(outfile);  //salvo la transazione nel file subito dopo averla aggiunta al vector
+        t->salvaFile(outfile);
         cout << "TRANSAZIONE REGISTRATA!" << endl;
         outfile.close();
     }
-    catch(exception){
+    catch(exception&){
         cout << "ERRORE APERTURA FILE!" << endl;
     }
 }
@@ -64,7 +57,7 @@ void ContoCorrente::stampaDaFile() const {
        cout << "\nSaldo attuale: " << saldo << " euro" << endl;
         infile.close();
     }
-    catch(exception){
+    catch(exception&){
         cout << "ERRORE APERTURA FILE!" << endl;
     }
 }
@@ -73,8 +66,8 @@ void ContoCorrente::clearFile() {
     try{
         ofstream outfile("fileTransazioni.txt", ios::trunc);
     }
-    catch(exception e){
-        cout << "errore";
+    catch(exception& ){
+        cout << "errore pulizia file";
     }
 }
 
@@ -100,19 +93,19 @@ void ContoCorrente::letturaFile(){
             desc = campi[2];
             imp = stod(campi[3]);
 
-            Transazione *t;
+            unique_ptr<Transazione> temp;
             if (tipo == "uscita"){
-                t = new Tuscita(desc,imp,md);
+                temp =make_unique<Tuscita>(desc,imp,md);
             }
             else{
-                t = new Tingresso(desc,imp,md);
+                temp =make_unique<Tingresso>(desc,imp,md);
             }
             saldo+=imp;
-            transazioni.push_back(t);
+            transazioni.push_back(move(temp));
         }
         cout << "LETTURA FILE COMPLETATA!" << endl;
     }
-    catch(exception e)
+    catch(exception& e)
     {
         cout << "ERRORE: " << e.what() << endl;
     }

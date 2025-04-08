@@ -4,6 +4,7 @@
 
 #ifndef LABORATORIOPROGRAMMAZIONE_CONTOCORRENTE_H
 #define LABORATORIOPROGRAMMAZIONE_CONTOCORRENTE_H
+#include <memory>
 
 using namespace std;
 #include "vector"
@@ -11,13 +12,13 @@ using namespace std;
 
 class ContoCorrente {
     private:
-       vector<Transazione *>transazioni;
+       vector<unique_ptr<Transazione>>transazioni;
        double saldo;
 
     public:
         ContoCorrente();
         ~ContoCorrente();
-        void addTransazione(Transazione* t);
+        void addTransazione(const unique_ptr<Transazione>& t);
         void stampaTransazioni()const;
         void stampaDaFile()const;
         void clearFile();

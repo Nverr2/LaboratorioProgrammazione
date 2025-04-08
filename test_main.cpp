@@ -1,3 +1,9 @@
-//
-// Created by nverl on 28/01/2025.
-//
+#include <fstream>
+#include "ContoCorrente.h"
+#include "Transazione.h"
+
+using namespace std;
+
+// Percorso del file per i test
+const string testFile = "test_transazioni.txt";
+

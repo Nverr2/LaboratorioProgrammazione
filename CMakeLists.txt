@@ -14,30 +14,21 @@ add_executable(LaboratorioProgrammazione main.cpp
         test_main.cpp)
 
 
-# Scarica GoogleTest (solo una volta per il progetto)
-include(FetchContent)
+# Aggiungi GoogleTest
+add_subdirectory(googletest)
 
-FetchContent_Declare(
-        googletest
-        URL https://github.com/google/googletest/archive/refs/tags/release-1.12.1.zip
-)
-# Imposta GTest per non installarlo nel sistema
-set(BUILD_GMOCK OFF)
-set(INSTALL_GTEST OFF)
-
-# Scarica e rendi disponibile GoogleTest
-FetchContent_MakeAvailable(googletest)
-
-# Aggiungi il target per i test
-enable_testing()
-
-add_executable(my_tests
-        test_main.cpp # File principale dei test
-)
-target_link_libraries(my_tests
-        gtest
-        gtest_main
+# Includi header e GTest
+include_directories(
+        ${PROJECT_SOURCE_DIR}
+        googletest/googletest/include
 )
 
-add_test(NAME MyTests COMMAND my_tests)
+# Eseguibile per i test
+add_executable(runTests
+        test_main.cpp
+        ContoCorrente.cpp
+)
+
+# Linka Google Test
+target_link_libraries(runTests gtest gtest_main pthread)
 
