@@ -10,7 +10,7 @@ int main() {
 
     conto.letturaFile();
     //conto.clearFile();
-    //conto.addTransazione(make_unique<Tuscita>("Multe", 1200, "Polizia municipale"));
+    //conto.addTransazione(make_unique<Tuscita>("Multe", 1200, "Polizia municipale"));//da inserire
     conto.stampaTransazioni();
     conto.stampaDaFile();
 
