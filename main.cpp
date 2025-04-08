@@ -10,11 +10,7 @@ int main() {
 
     conto.letturaFile();
     //conto.clearFile();
-   // conto.addTransazione(new Tingresso("Stipendio", 1340, "Lavoro"));     //transazione già memorizzzata
-   // conto.addTransazione(new Tingresso("Regalo natale", 50, "Nonna"));    //transazione già memorizzata
-  //  conto.addTransazione(new Tuscita("Shopping", 150, "Zara"));           //transazione già memorizzata
-   // conto.addTransazione(new Tuscita("Multe", 1240, "Polizia municipale"));
-    // conto.addTransazione(new Tuscita("Pranzo", 10, "Pizzeria"));          //transazione già memorizzata
+    //conto.addTransazione(make_unique<Tuscita>("Multe", 1200, "Polizia municipale"));
     conto.stampaTransazioni();
     conto.stampaDaFile();
 

@@ -14,6 +14,9 @@
 # EXTERNAL cache entries
 ########################
 
+//Builds the googlemock subproject
+BUILD_GMOCK:BOOL=ON
+
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=C:/Program Files/JetBrains/CLion 2024.3.5/bin/mingw/bin/addr2line.exe
 
@@ -167,7 +170,7 @@ CMAKE_INSTALL_SYSCONFDIR:PATH=etc
 CMAKE_LINKER:FILEPATH=C:/Program Files/JetBrains/CLion 2024.3.5/bin/mingw/bin/ld.exe
 
 //make program
-CMAKE_MAKE_PROGRAM:FILEPATH=C:/Program Files/JetBrains/CLion 2024.3.5/bin/ninja/win/x64/ninja.exe
+CMAKE_MAKE_PROGRAM:FILEPATH=C:/PROGRA~1/JETBRA~1/CLION2~1.5/bin/ninja/win/x64/ninja.exe
 
 //Flags used by the linker during the creation of modules during
 // all build types.
@@ -325,6 +328,14 @@ FETCHCONTENT_UPDATES_DISCONNECTED:BOOL=OFF
 //Enables UPDATE_DISCONNECTED behavior just for population of googletest
 FETCHCONTENT_UPDATES_DISCONNECTED_GOOGLETEST:BOOL=OFF
 
+//Use Abseil and RE2. Requires Abseil and RE2 to be separately
+// added to the build.
+GTEST_HAS_ABSL:BOOL=OFF
+
+//Enable installation of googletest. (Projects embedding googletest
+// may want to turn this OFF.)
+INSTALL_GTEST:BOOL=ON
+
 //Value Computed by CMake
 LaboratorioProgrammazione_BINARY_DIR:STATIC=C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/cmake-build-debug
 
@@ -335,22 +346,34 @@ LaboratorioProgrammazione_IS_TOP_LEVEL:STATIC=ON
 LaboratorioProgrammazione_SOURCE_DIR:STATIC=C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione
 
 //Value Computed by CMake
-googletest-distribution_BINARY_DIR:STATIC=C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/cmake-build-debug/_deps/googletest-build
+gmock_BINARY_DIR:STATIC=C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/cmake-build-debug/googletest/googlemock
+
+//Value Computed by CMake
+gmock_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+gmock_SOURCE_DIR:STATIC=C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/googletest/googlemock
+
+//Build all of Google Mock's own tests.
+gmock_build_tests:BOOL=OFF
+
+//Value Computed by CMake
+googletest-distribution_BINARY_DIR:STATIC=C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/cmake-build-debug/googletest
 
 //Value Computed by CMake
 googletest-distribution_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
-googletest-distribution_SOURCE_DIR:STATIC=C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/cmake-build-debug/_deps/googletest-src
+googletest-distribution_SOURCE_DIR:STATIC=C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/googletest
 
 //Value Computed by CMake
-gtest_BINARY_DIR:STATIC=C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/cmake-build-debug/_deps/googletest-build/googletest
+gtest_BINARY_DIR:STATIC=C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/cmake-build-debug/googletest/googletest
 
 //Value Computed by CMake
 gtest_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
-gtest_SOURCE_DIR:STATIC=C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/cmake-build-debug/_deps/googletest-src/googletest
+gtest_SOURCE_DIR:STATIC=C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/googletest/googletest
 
 //Build gtest's sample programs.
 gtest_build_samples:BOOL=OFF
@@ -367,9 +390,6 @@ gtest_force_shared_crt:BOOL=OFF
 
 //Build gtest with internal symbols hidden in shared libraries.
 gtest_hide_internal_symbols:BOOL=OFF
-
-//Dependencies for the target
-gtest_main_LIB_DEPENDS:STATIC=general;gtest;
 
 
 ########################
@@ -506,7 +526,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=3
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=4
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -577,6 +597,9 @@ _Python_Interpreter_REASON_FAILURE:INTERNAL=
 //NumPy reason failure
 _Python_NumPy_REASON_FAILURE:INTERNAL=
 cmake_package_name:INTERNAL=GTest
+generated_dir:INTERNAL=C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/cmake-build-debug/googletest/googletest/generated
+//ADVANCED property for variable: gmock_build_tests
+gmock_build_tests-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: gtest_build_samples
 gtest_build_samples-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: gtest_build_tests
@@ -587,4 +610,5 @@ gtest_disable_pthreads-ADVANCED:INTERNAL=1
 gtest_force_shared_crt-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: gtest_hide_internal_symbols
 gtest_hide_internal_symbols-ADVANCED:INTERNAL=1
+targets_export_name:INTERNAL=GTestTargets
 
