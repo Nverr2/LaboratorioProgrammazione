@@ -5,7 +5,7 @@
 #include "Tuscita.h"
 
 void Tuscita::stampa() const {
-    cout << "\nDescrizione: " << descrizione << ", Destinatario: " << destinatario << ", Importo: " << importo << " euro";
+    cout << "\nID: " << id << ", Descrizione: " << descrizione << ", Destinatario: " << destinatario << ", Importo: " << importo << " euro";
 }
 
 void Tuscita::salvaFile(ofstream &outfile) const {

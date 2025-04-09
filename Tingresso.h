@@ -10,7 +10,7 @@
 
 class Tingresso : public Transazione{
     public:
-        Tingresso(string desc, double imp,string mit) : Transazione(desc,imp), mittente(mit){
+        Tingresso(int id,string desc, double imp,string mit) : Transazione(id,desc,imp), mittente(mit){
         }
         void stampa() const override;
 

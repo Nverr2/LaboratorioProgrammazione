@@ -23,6 +23,9 @@ class ContoCorrente {
         void stampaDaFile()const;
         void clearFile();
         void letturaFile();
+        bool eliminaTransazione(const int& k);
+        void updateFile() const;
+        void rimborso(const unique_ptr<Transazione>& t);
         double getSaldo()const{
             return saldo;
         }

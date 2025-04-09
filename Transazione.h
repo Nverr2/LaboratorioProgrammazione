@@ -12,11 +12,12 @@
 using namespace std;
 class Transazione{
     protected:
+        int id;
         string descrizione;
         double importo;
 
     public:
-        Transazione(string desc,double imp) : descrizione(desc), importo(imp){
+        Transazione(int identifier,string desc,double imp) : id(identifier), descrizione(desc), importo(imp){
 
         }
         virtual ~Transazione() = default;
@@ -28,9 +29,13 @@ class Transazione{
             importo = imp;
         }
         virtual void salvaFile(ofstream& outfile)const{
-            outfile << descrizione << ", " << importo << "\n";
+            outfile << id <<", " << descrizione << ", " << importo << "\n";
         }
         virtual string printType()const=0;
+        int getId()const
+        {
+            return id;
+        }
 };
 
 #endif //LABORATORIOPROGRAMMAZIONE_TRANSAZIONE_H

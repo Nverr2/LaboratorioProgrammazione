@@ -10,7 +10,7 @@
 
 class Tuscita : public Transazione{
     public:
-        Tuscita(string desc,double imp,string dest) : Transazione(desc,imp), destinatario(dest){
+        Tuscita(int id,string desc,double imp,string dest) : Transazione(id,desc,imp), destinatario(dest){
             importo=-imp;
         }
         void stampa()const override;

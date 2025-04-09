@@ -12,9 +12,7 @@ ContoCorrente::ContoCorrente() {
     saldo=0;
 }
 ContoCorrente::~ContoCorrente()
-{
-
-}
+{}
 
 void ContoCorrente::stampaTransazioni() const {
     if(!transazioni.empty()){
@@ -87,6 +85,7 @@ void ContoCorrente::letturaFile(){
             istringstream iss(line);
             string campo;
             vector<std::string> campi;
+            int id;
             double imp;
             string tipo,md,desc; //md = mittente/destinatario
 
@@ -96,15 +95,16 @@ void ContoCorrente::letturaFile(){
 
             tipo = campi[0];
             md = campi[1];
-            desc = campi[2];
-            imp = stod(campi[3]);
+            id = stoi(campi[2]);
+            desc = campi[3];
+            imp = stod(campi[4]);
 
             unique_ptr<Transazione> temp;
             if (tipo == "uscita"){
-                temp =make_unique<Tuscita>(desc,imp,md);
+                temp =make_unique<Tuscita>(id,desc,imp,md);
             }
             else{
-                temp = make_unique<Tingresso>(desc,imp,md);
+                temp = make_unique<Tingresso>(id,desc,imp,md);
             }
             saldo+=imp;
             transazioni.push_back(move(temp));
@@ -116,5 +116,46 @@ void ContoCorrente::letturaFile(){
         cout << "ERRORE: " << e.what() << endl;
     }
 
-
 }
+
+bool ContoCorrente::eliminaTransazione(const int& k){
+    bool found = false;
+    int i=0;
+    for (const auto& t : transazioni) {
+        if (t->getId()==k){ //transazione trovata, procedo ad eliminare
+            rimborso(t);
+            transazioni.erase(transazioni.begin()+i);
+            found = true;
+            break;
+        }
+        i++;
+    }
+    updateFile();
+    return found;
+}
+void ContoCorrente::updateFile() const
+{
+    try
+    {
+        ofstream outfile("fileTransazioni.txt", ios::trunc);
+        for (const auto& t : transazioni){
+            t->salvaFile(outfile);
+        }
+        outfile.close();
+    }catch (exception& e){
+        cout << "ERRORE: " << e.what() << endl;
+    }
+}
+
+void ContoCorrente::rimborso(const unique_ptr<Transazione>& t)
+{
+    if (t->printType()=="entrata"){
+        saldo=saldo-t->getImporto();
+    }else{
+        saldo=saldo+t->getImporto();
+    }
+}
+
+
+
+
