@@ -5,7 +5,7 @@
 #include "Tingresso.h"
 
 void Tingresso::stampa() const {
-    cout << "\nTRANSAZIONE IN ENTRATA: Descrizione: " << descrizione << ", Mittente: " << mittente << ", Importo: " << importo << " euro";
+    cout << "\nDescrizione: " << descrizione << ", Mittente: " << mittente << ", Importo: " << importo << " euro";
 }
 
 void Tingresso::salvaFile(ofstream &outfile)const {

@@ -11,9 +11,14 @@
 ContoCorrente::ContoCorrente() {
     saldo=0;
 }
+ContoCorrente::~ContoCorrente()
+{
+
+}
 
 void ContoCorrente::stampaTransazioni() const {
     if(!transazioni.empty()){
+        cout << "\nSTAMPA:";
         for (const auto& t : transazioni) {
             t->stampa();
         }
@@ -24,29 +29,30 @@ void ContoCorrente::stampaTransazioni() const {
 
 }
 
-void ContoCorrente::addTransazione(const unique_ptr<Transazione>& t) {
+void ContoCorrente::addTransazione(unique_ptr<Transazione> t) {
     if(t->printType() == "uscita"){   //verifico di avere un saldo sufficiente per effettuare la transazione
         if(saldo+(t->getImporto())<0){
             cout << "Saldo insufficiente per effettuare la transazione!" << endl;
             return;
         }
     }
-    transazioni.push_back(move(t));
+
     saldo=saldo+t->getImporto();    //aggiorno il saldo
 
     try{    //salvo la transazione nel file subito dopo averla aggiunta al vector
         ofstream outfile("fileTransazioni.txt", ios::app);
         t->salvaFile(outfile);
-        cout << "TRANSAZIONE REGISTRATA!" << endl;
         outfile.close();
     }
     catch(exception&){
         cout << "ERRORE APERTURA FILE!" << endl;
     }
+    transazioni.push_back(move(t));
+    cout << "TRANSAZIONE REGISTRATA!" << endl;
 }
 
 void ContoCorrente::stampaDaFile() const {
-    cout << "STAMPA DA FILE:\n";
+    cout << "\nSTAMPA DA FILE:\n";
     try{
         ifstream infile("fileTransazioni.txt");
         string line;
@@ -54,7 +60,7 @@ void ContoCorrente::stampaDaFile() const {
             cout << line << endl;
         }
 
-       cout << "\nSaldo attuale: " << saldo << " euro" << endl;
+       cout << "Saldo attuale: " << saldo << " euro" << endl;
         infile.close();
     }
     catch(exception&){
@@ -98,7 +104,7 @@ void ContoCorrente::letturaFile(){
                 temp =make_unique<Tuscita>(desc,imp,md);
             }
             else{
-                temp =make_unique<Tingresso>(desc,imp,md);
+                temp = make_unique<Tingresso>(desc,imp,md);
             }
             saldo+=imp;
             transazioni.push_back(move(temp));

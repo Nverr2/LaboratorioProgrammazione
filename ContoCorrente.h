@@ -18,7 +18,7 @@ class ContoCorrente {
     public:
         ContoCorrente();
         ~ContoCorrente();
-        void addTransazione(const unique_ptr<Transazione>& t);
+        void addTransazione(unique_ptr<Transazione> t);
         void stampaTransazioni()const;
         void stampaDaFile()const;
         void clearFile();
