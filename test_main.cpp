@@ -60,11 +60,19 @@ TEST(AddTransazione,ScritturaFile){
     }
     ASSERT_EQ(true,x);
 }
-TEST(EliminaTransazioni,Rimborso){
+TEST(EliminaTransazioni,RimborsoEffettuato){
     ContoCorrente conto;
     conto.addTransazione(make_unique<Tingresso>(103,"Stipendio",2000,"Lavoro"),testFile);
     conto.addTransazione(make_unique<Tuscita>(104,"Playstation",500,"Sony"),testFile);
     conto.eliminaTransazione(104);
     ASSERT_EQ(conto.getSaldo(),2000);
+
+}
+TEST(EliminaTransazioni,RimborsoSaldoInsufficiente){
+    ContoCorrente conto;
+    conto.addTransazione(make_unique<Tingresso>(103,"Stipendio",2000,"Lavoro"),testFile);
+    conto.addTransazione(make_unique<Tuscita>(104,"Playstation",500,"Sony"),testFile);
+    conto.eliminaTransazione(103);
+    ASSERT_EQ(conto.getSaldo(),1500);
 
 }

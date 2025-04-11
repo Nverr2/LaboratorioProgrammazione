@@ -123,6 +123,10 @@ bool ContoCorrente::eliminaTransazione(const int& k){
     int i=0;
     for (const auto& t : transazioni) {
         if (t->getId()==k){ //transazione trovata, procedo ad eliminare
+            if (saldo-(t->getImporto())<0){ //non posso rimborsare più soldi di quanti ne posseggo
+                cout << "SALDO INSUFFICIENTE PER EFFETTUARE IL RIMBORSO!!!" << endl;
+                return false;
+            }
             rimborso(t);
             transazioni.erase(transazioni.begin()+i);
             found = true;
@@ -149,11 +153,8 @@ void ContoCorrente::updateFile(const string& filename) const
 
 void ContoCorrente::rimborso(const unique_ptr<Transazione>& t)
 {
-    if (t->printType()=="entrata"){
-        saldo=saldo-t->getImporto();
-    }else{
-        saldo=saldo+t->getImporto();
-    }
+    saldo=saldo-(t->getImporto());  //vista la struttura del progetto i casi pos/neg combaciano
+
 }
 
 
