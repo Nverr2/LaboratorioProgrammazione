@@ -18,13 +18,13 @@ class ContoCorrente {
     public:
         ContoCorrente();
         ~ContoCorrente();
-        void addTransazione(unique_ptr<Transazione> t);
+        void addTransazione(unique_ptr<Transazione> t,const string& filename);
         void stampaTransazioni()const;
-        void stampaDaFile()const;
-        void clearFile();
-        void letturaFile();
+        void stampaDaFile(const string& filename)const;
+        void clearFile(const string& filename);
+        void letturaFile(const string& filename);
         bool eliminaTransazione(const int& k);
-        void updateFile() const;
+        void updateFile(const string& filename) const;
         void rimborso(const unique_ptr<Transazione>& t);
         double getSaldo()const{
             return saldo;

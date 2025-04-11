@@ -1,5 +1,4 @@
 C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/cmake-build-debug/CMakeFiles/LaboratorioProgrammazione.dir
-C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/cmake-build-debug/CMakeFiles/runTests.dir
 C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/cmake-build-debug/CMakeFiles/edit_cache.dir
 C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/cmake-build-debug/CMakeFiles/rebuild_cache.dir
 C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/cmake-build-debug/CMakeFiles/list_install_components.dir

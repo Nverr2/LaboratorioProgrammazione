@@ -27,7 +27,7 @@ void ContoCorrente::stampaTransazioni() const {
 
 }
 
-void ContoCorrente::addTransazione(unique_ptr<Transazione> t) {
+void ContoCorrente::addTransazione(unique_ptr<Transazione> t, const string& filename) {
     if(t->printType() == "uscita"){   //verifico di avere un saldo sufficiente per effettuare la transazione
         if(saldo+(t->getImporto())<0){
             cout << "Saldo insufficiente per effettuare la transazione!" << endl;
@@ -38,7 +38,7 @@ void ContoCorrente::addTransazione(unique_ptr<Transazione> t) {
     saldo=saldo+t->getImporto();    //aggiorno il saldo
 
     try{    //salvo la transazione nel file subito dopo averla aggiunta al vector
-        ofstream outfile("fileTransazioni.txt", ios::app);
+        ofstream outfile(filename, ios::app);
         t->salvaFile(outfile);
         outfile.close();
     }
@@ -49,10 +49,10 @@ void ContoCorrente::addTransazione(unique_ptr<Transazione> t) {
     cout << "TRANSAZIONE REGISTRATA!" << endl;
 }
 
-void ContoCorrente::stampaDaFile() const {
+void ContoCorrente::stampaDaFile(const string& filename) const {
     cout << "\nSTAMPA DA FILE:\n";
     try{
-        ifstream infile("fileTransazioni.txt");
+        ifstream infile(filename);
         string line;
         while (getline(infile,line)){
             cout << line << endl;
@@ -66,19 +66,19 @@ void ContoCorrente::stampaDaFile() const {
     }
 }
 
-void ContoCorrente::clearFile() {
+void ContoCorrente::clearFile(const string& filename) {
     try{
-        ofstream outfile("fileTransazioni.txt", ios::trunc);
+        ofstream outfile(filename, ios::trunc);
     }
     catch(exception& ){
         cout << "errore pulizia file";
     }
 }
 
-void ContoCorrente::letturaFile(){
+void ContoCorrente::letturaFile(const string& filename){
     try
     {
-        ifstream infile("fileTransazioni.txt");
+        ifstream infile(filename);
         string line;
         while (getline(infile,line))
         {
@@ -100,7 +100,7 @@ void ContoCorrente::letturaFile(){
             imp = stod(campi[4]);
 
             unique_ptr<Transazione> temp;
-            if (tipo == "uscita"){
+            if (tipo == "Uscita"){
                 temp =make_unique<Tuscita>(id,desc,imp,md);
             }
             else{
@@ -130,14 +130,14 @@ bool ContoCorrente::eliminaTransazione(const int& k){
         }
         i++;
     }
-    updateFile();
+    updateFile("fileTransazioni.txt");
     return found;
 }
-void ContoCorrente::updateFile() const
+void ContoCorrente::updateFile(const string& filename) const
 {
     try
     {
-        ofstream outfile("fileTransazioni.txt", ios::trunc);
+        ofstream outfile(filename, ios::trunc);
         for (const auto& t : transazioni){
             t->salvaFile(outfile);
         }

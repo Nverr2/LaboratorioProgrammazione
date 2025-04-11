@@ -29,7 +29,7 @@ class Transazione{
             importo = imp;
         }
         virtual void salvaFile(ofstream& outfile)const{
-            outfile << id <<", " << descrizione << ", " << importo << "\n";
+            outfile << id <<"," << descrizione << "," << importo << "\n";
         }
         virtual string printType()const=0;
         int getId()const

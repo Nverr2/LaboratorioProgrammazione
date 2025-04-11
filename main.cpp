@@ -7,18 +7,21 @@
 
 int main() {
     ContoCorrente conto;
+    string file="fileTransazioni.txt";
 
-   conto.letturaFile();
-   // conto.clearFile();
-   // conto.addTransazione(make_unique<Tuscita>(103,"Multe", 1200, "Polizia municipale")); //per provare eliminazione
+   conto.letturaFile(file);
+   // conto.clearFile(file);
+   //  conto.addTransazione(make_unique<Tingresso>(100,"Stipendio", 1340, "Lavoro"),file);
+  //   conto.addTransazione(make_unique<Tingresso>(101,"Regalo natale", 50, "Nonna"),file);
+  //   conto.addTransazione(make_unique<Tuscita>(102,"Shopping", 150, "Zara"),file);
+   // conto.addTransazione(make_unique<Tuscita>(104,"Multe", 1200, "Polizia municipale"),file); //per provare eliminazione
     bool x=conto.eliminaTransazione(103);
     if (x)
         cout << "TRANSAZIONE RIMBORSATA!";
     else
         cout << "TRANSAZIONE NON TROVATA!";
-    //conto.addTransazione(make_unique<Tuscita>(103,"Multe", 1200, "Polizia municipale")); //non ancora registrata
-    conto.stampaTransazioni();
-    conto.stampaDaFile();
+  //  conto.stampaTransazioni();
+    conto.stampaDaFile(file);
 
 
     return 0;

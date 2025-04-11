@@ -47,40 +47,40 @@ cmake_ninja_workdir = C$:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammaz
 #############################################
 # Order-only phony target for LaboratorioProgrammazione
 
-build cmake_object_order_depends_target_LaboratorioProgrammazione: phony || .
+build cmake_object_order_depends_target_LaboratorioProgrammazione: phony || cmake_object_order_depends_target_gmock cmake_object_order_depends_target_gtest cmake_object_order_depends_target_gtest_main
 
 build CMakeFiles/LaboratorioProgrammazione.dir/main.cpp.obj: CXX_COMPILER__LaboratorioProgrammazione_unscanned_Debug C$:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/main.cpp || cmake_object_order_depends_target_LaboratorioProgrammazione
   DEP_FILE = CMakeFiles\LaboratorioProgrammazione.dir\main.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione -IC:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/googletest/googletest/include
+  INCLUDES = -isystem C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/googletest/googletest/include -isystem C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/googletest/googlemock/include -isystem C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/googletest/googletest -isystem C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/googletest/googlemock
   OBJECT_DIR = CMakeFiles\LaboratorioProgrammazione.dir
   OBJECT_FILE_DIR = CMakeFiles\LaboratorioProgrammazione.dir
 
 build CMakeFiles/LaboratorioProgrammazione.dir/Tingresso.cpp.obj: CXX_COMPILER__LaboratorioProgrammazione_unscanned_Debug C$:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/Tingresso.cpp || cmake_object_order_depends_target_LaboratorioProgrammazione
   DEP_FILE = CMakeFiles\LaboratorioProgrammazione.dir\Tingresso.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione -IC:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/googletest/googletest/include
+  INCLUDES = -isystem C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/googletest/googletest/include -isystem C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/googletest/googlemock/include -isystem C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/googletest/googletest -isystem C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/googletest/googlemock
   OBJECT_DIR = CMakeFiles\LaboratorioProgrammazione.dir
   OBJECT_FILE_DIR = CMakeFiles\LaboratorioProgrammazione.dir
 
 build CMakeFiles/LaboratorioProgrammazione.dir/Tuscita.cpp.obj: CXX_COMPILER__LaboratorioProgrammazione_unscanned_Debug C$:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/Tuscita.cpp || cmake_object_order_depends_target_LaboratorioProgrammazione
   DEP_FILE = CMakeFiles\LaboratorioProgrammazione.dir\Tuscita.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione -IC:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/googletest/googletest/include
+  INCLUDES = -isystem C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/googletest/googletest/include -isystem C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/googletest/googlemock/include -isystem C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/googletest/googletest -isystem C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/googletest/googlemock
   OBJECT_DIR = CMakeFiles\LaboratorioProgrammazione.dir
   OBJECT_FILE_DIR = CMakeFiles\LaboratorioProgrammazione.dir
 
 build CMakeFiles/LaboratorioProgrammazione.dir/ContoCorrente.cpp.obj: CXX_COMPILER__LaboratorioProgrammazione_unscanned_Debug C$:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/ContoCorrente.cpp || cmake_object_order_depends_target_LaboratorioProgrammazione
   DEP_FILE = CMakeFiles\LaboratorioProgrammazione.dir\ContoCorrente.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione -IC:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/googletest/googletest/include
+  INCLUDES = -isystem C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/googletest/googletest/include -isystem C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/googletest/googlemock/include -isystem C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/googletest/googletest -isystem C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/googletest/googlemock
   OBJECT_DIR = CMakeFiles\LaboratorioProgrammazione.dir
   OBJECT_FILE_DIR = CMakeFiles\LaboratorioProgrammazione.dir
 
 build CMakeFiles/LaboratorioProgrammazione.dir/test_main.cpp.obj: CXX_COMPILER__LaboratorioProgrammazione_unscanned_Debug C$:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/test_main.cpp || cmake_object_order_depends_target_LaboratorioProgrammazione
   DEP_FILE = CMakeFiles\LaboratorioProgrammazione.dir\test_main.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione -IC:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/googletest/googletest/include
+  INCLUDES = -isystem C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/googletest/googletest/include -isystem C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/googletest/googlemock/include -isystem C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/googletest/googletest -isystem C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/googletest/googlemock
   OBJECT_DIR = CMakeFiles\LaboratorioProgrammazione.dir
   OBJECT_FILE_DIR = CMakeFiles\LaboratorioProgrammazione.dir
 
@@ -92,56 +92,15 @@ build CMakeFiles/LaboratorioProgrammazione.dir/test_main.cpp.obj: CXX_COMPILER__
 #############################################
 # Link the executable LaboratorioProgrammazione.exe
 
-build LaboratorioProgrammazione.exe: CXX_EXECUTABLE_LINKER__LaboratorioProgrammazione_Debug CMakeFiles/LaboratorioProgrammazione.dir/main.cpp.obj CMakeFiles/LaboratorioProgrammazione.dir/Tingresso.cpp.obj CMakeFiles/LaboratorioProgrammazione.dir/Tuscita.cpp.obj CMakeFiles/LaboratorioProgrammazione.dir/ContoCorrente.cpp.obj CMakeFiles/LaboratorioProgrammazione.dir/test_main.cpp.obj
+build LaboratorioProgrammazione.exe: CXX_EXECUTABLE_LINKER__LaboratorioProgrammazione_Debug CMakeFiles/LaboratorioProgrammazione.dir/main.cpp.obj CMakeFiles/LaboratorioProgrammazione.dir/Tingresso.cpp.obj CMakeFiles/LaboratorioProgrammazione.dir/Tuscita.cpp.obj CMakeFiles/LaboratorioProgrammazione.dir/ContoCorrente.cpp.obj CMakeFiles/LaboratorioProgrammazione.dir/test_main.cpp.obj | lib/libgtest.a lib/libgmock.a lib/libgtest_main.a lib/libgtest.a || lib/libgmock.a lib/libgtest.a lib/libgtest_main.a
   FLAGS = -g
-  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  LINK_LIBRARIES = lib/libgtest.a  lib/libgmock.a  lib/libgtest_main.a  lib/libgtest.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\LaboratorioProgrammazione.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
   TARGET_FILE = LaboratorioProgrammazione.exe
   TARGET_IMPLIB = libLaboratorioProgrammazione.dll.a
   TARGET_PDB = LaboratorioProgrammazione.exe.dbg
-
-# =============================================================================
-# Object build statements for EXECUTABLE target runTests
-
-
-#############################################
-# Order-only phony target for runTests
-
-build cmake_object_order_depends_target_runTests: phony || cmake_object_order_depends_target_gtest cmake_object_order_depends_target_gtest_main
-
-build CMakeFiles/runTests.dir/test_main.cpp.obj: CXX_COMPILER__runTests_unscanned_Debug C$:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/test_main.cpp || cmake_object_order_depends_target_runTests
-  DEP_FILE = CMakeFiles\runTests.dir\test_main.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione -isystem C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/googletest/googletest/include -isystem C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/googletest/googletest
-  OBJECT_DIR = CMakeFiles\runTests.dir
-  OBJECT_FILE_DIR = CMakeFiles\runTests.dir
-
-build CMakeFiles/runTests.dir/ContoCorrente.cpp.obj: CXX_COMPILER__runTests_unscanned_Debug C$:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/ContoCorrente.cpp || cmake_object_order_depends_target_runTests
-  DEP_FILE = CMakeFiles\runTests.dir\ContoCorrente.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione -isystem C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/googletest/googletest/include -isystem C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/googletest/googletest
-  OBJECT_DIR = CMakeFiles\runTests.dir
-  OBJECT_FILE_DIR = CMakeFiles\runTests.dir
-
-
-# =============================================================================
-# Link build statements for EXECUTABLE target runTests
-
-
-#############################################
-# Link the executable runTests.exe
-
-build runTests.exe: CXX_EXECUTABLE_LINKER__runTests_Debug CMakeFiles/runTests.dir/test_main.cpp.obj CMakeFiles/runTests.dir/ContoCorrente.cpp.obj | lib/libgtest.a lib/libgtest_main.a lib/libgtest.a || lib/libgtest.a lib/libgtest_main.a
-  FLAGS = -g
-  LINK_LIBRARIES = lib/libgtest.a  lib/libgtest_main.a  -lpthread  lib/libgtest.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
-  OBJECT_DIR = CMakeFiles\runTests.dir
-  POST_BUILD = cd .
-  PRE_LINK = cd .
-  TARGET_FILE = runTests.exe
-  TARGET_IMPLIB = librunTests.dll.a
-  TARGET_PDB = runTests.exe.dbg
 
 
 #############################################
@@ -567,8 +526,6 @@ build libgtest.a: phony lib/libgtest.a
 
 build libgtest_main.a: phony lib/libgtest_main.a
 
-build runTests: phony runTests.exe
-
 # =============================================================================
 # Folder targets.
 
@@ -577,7 +534,7 @@ build runTests: phony runTests.exe
 #############################################
 # Folder: C:/Users/nverl/OneDrive/Desktop/UNI/LaboratorioProgrammazione/cmake-build-debug
 
-build all: phony LaboratorioProgrammazione.exe runTests.exe googletest/all
+build all: phony LaboratorioProgrammazione.exe googletest/all
 
 # =============================================================================
 

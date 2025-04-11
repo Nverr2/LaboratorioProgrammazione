@@ -3,6 +3,13 @@ project(LaboratorioProgrammazione)
 
 set(CMAKE_CXX_STANDARD 17)
 
+add_subdirectory(googletest)
+
+include_directories(
+        ${PROJECT_SOURCE_DIR}/googletest/googletest/include
+        ${PROJECT_SOURCE_DIR}/googletest/googlemock/include
+)
+
 add_executable(LaboratorioProgrammazione main.cpp
         Transazione.h
         Tingresso.cpp
@@ -14,21 +21,6 @@ add_executable(LaboratorioProgrammazione main.cpp
         test_main.cpp)
 
 
-# Aggiungi GoogleTest
-add_subdirectory(googletest)
-
-# Includi header e GTest
-include_directories(
-        ${PROJECT_SOURCE_DIR}
-        googletest/googletest/include
-)
-
-# Eseguibile per i test
-add_executable(runTests
-        test_main.cpp
-        ContoCorrente.cpp
-)
-
 # Linka Google Test
-target_link_libraries(runTests gtest gtest_main pthread)
+target_link_libraries(LaboratorioProgrammazione gtest gmock gtest_main)
 
