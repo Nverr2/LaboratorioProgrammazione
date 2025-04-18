@@ -8,34 +8,42 @@
 #include <string>
 #include "iostream"
 #include "fstream"
+#include <chrono>
 
 using namespace std;
+using namespace chrono;
+
 class Transazione{
-    protected:
+    private:
         int id;
-        string descrizione;
+        string descrizione,md;  //md=mittente/destinatario
         double importo;
+        bool type; //true=ingresso, false=uscita
+        year_month_day data;
+
+
+
+
+    //data
 
     public:
-        Transazione(int identifier,string desc,double imp) : id(identifier), descrizione(desc), importo(imp){
-
-        }
+        Transazione(bool tp,int identifier,string mitdest,string desc,double imp,year y, month m,day d);
         virtual ~Transazione() = default;
-        virtual void stampa()const = 0;
-        double getImporto()const{
-            return importo;
-        }
+        void stampa()const;
+        double getImporto()const{return importo;}
         void setImporto(double imp){
-            importo = imp;
+            if (imp>0)
+                importo = imp;
+            else
+                cout<<"Importo non accettabile!";
         }
-        virtual void salvaFile(ofstream& outfile)const{
-            outfile << id <<"," << descrizione << "," << importo << "\n";
-        }
-        virtual string printType()const=0;
-        int getId()const
-        {
-            return id;
-        }
+        bool getType()const{return type;}
+        int getId()const{return id;}
+        string getDescrizione()const{return descrizione;}
+        void setDescrizione(string desc){descrizione=desc;}
+        year_month_day getData()const{return data;}
+        string getMitDest()const{return md;}
+
 };
 
 #endif //LABORATORIOPROGRAMMAZIONE_TRANSAZIONE_H

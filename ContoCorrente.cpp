@@ -4,9 +4,7 @@
 
 #include "ContoCorrente.h"
 #include <sstream>
-
-#include "Tingresso.h"
-#include "Tuscita.h"
+#include "Transazione.h"
 
 ContoCorrente::ContoCorrente() {
     saldo=0;
@@ -16,9 +14,15 @@ ContoCorrente::~ContoCorrente()
 
 void ContoCorrente::stampaTransazioni() const {
     if(!transazioni.empty()){
-        cout << "\nSTAMPA:";
+        cout << "STAMPA:\n";
         for (const auto& t : transazioni) {
-            t->stampa();
+           // t->stampa();
+            if (t->getType()){  //transazione in ingresso
+                cout<<"INGRESSO, Id: "<<t->getId()<<", Mit: "<<t->getMitDest()<<", Importo: "<<t->getImporto()<<", Data: "<<t->getData()<<endl;
+            }
+            else{
+                cout<<"USCITA, Id: "<<t->getId()<<", Dest: "<<t->getMitDest()<<", Importo: "<<t->getImporto()<<", Data: "<<t->getData()<<endl;
+            }
         }
         cout << "\nSaldo attuale: " << saldo << " euro" << endl;
     }
@@ -28,7 +32,7 @@ void ContoCorrente::stampaTransazioni() const {
 }
 
 void ContoCorrente::addTransazione(unique_ptr<Transazione> t, const string& filename) {
-    if(t->printType() == "uscita"){   //verifico di avere un saldo sufficiente per effettuare la transazione
+    if(t->getType()==false){   //verifico di avere un saldo sufficiente per effettuare la transazione
         if(saldo+(t->getImporto())<0){
             cout << "Saldo insufficiente per effettuare la transazione!" << endl;
             return;
@@ -37,14 +41,14 @@ void ContoCorrente::addTransazione(unique_ptr<Transazione> t, const string& file
 
     saldo=saldo+t->getImporto();    //aggiorno il saldo
 
-    try{    //salvo la transazione nel file subito dopo averla aggiunta al vector
+   /* try{    //salvo la transazione nel file subito dopo averla aggiunta al vector
         ofstream outfile(filename, ios::app);
-        t->salvaFile(outfile);
+
         outfile.close();
     }
     catch(exception&){
         cout << "ERRORE APERTURA FILE!" << endl;
-    }
+    }*/
     transazioni.push_back(move(t));
     cout << "TRANSAZIONE REGISTRATA!" << endl;
 }
@@ -75,7 +79,7 @@ void ContoCorrente::clearFile(const string& filename) {
     }
 }
 
-void ContoCorrente::letturaFile(const string& filename){
+/*void ContoCorrente::letturaFile(const string& filename){
     try
     {
         ifstream infile(filename);
@@ -116,9 +120,9 @@ void ContoCorrente::letturaFile(const string& filename){
         cout << "ERRORE: " << e.what() << endl;
     }
 
-}
+}*/
 
-bool ContoCorrente::eliminaTransazione(const int& k){
+bool ContoCorrente::eliminaTransazione(const int k){
     bool found = false;
     int i=0;
     for (const auto& t : transazioni) {
@@ -143,7 +147,7 @@ void ContoCorrente::updateFile(const string& filename) const
     {
         ofstream outfile(filename, ios::trunc);
         for (const auto& t : transazioni){
-            t->salvaFile(outfile);
+           // t->salvaFile(outfile);
         }
         outfile.close();
     }catch (exception& e){

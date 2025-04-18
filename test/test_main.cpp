@@ -2,13 +2,14 @@
 #include <gtest/gtest.h>
 
 
-#include "ContoCorrente.h"
-#include "Tingresso.h"
-#include "Tuscita.h"
+#include "../ContoCorrente.h"
+#include "../Tingresso.h"
+#include "../Tuscita.h"
 
 using namespace std;
 
 const string testFile = "test_transazioni.txt";
+//transaz importi nulli o negativi
 
 TEST(AddTransazione,TransazioneIngresso){
     ContoCorrente conto;
@@ -64,15 +65,16 @@ TEST(EliminaTransazioni,RimborsoEffettuato){
     ContoCorrente conto;
     conto.addTransazione(make_unique<Tingresso>(103,"Stipendio",2000,"Lavoro"),testFile);
     conto.addTransazione(make_unique<Tuscita>(104,"Playstation",500,"Sony"),testFile);
-    conto.eliminaTransazione(104);
+    bool x=conto.eliminaTransazione(104);
     ASSERT_EQ(conto.getSaldo(),2000);
+    ASSERT_EQ(x,true);
 
 }
 TEST(EliminaTransazioni,RimborsoSaldoInsufficiente){
     ContoCorrente conto;
     conto.addTransazione(make_unique<Tingresso>(103,"Stipendio",2000,"Lavoro"),testFile);
     conto.addTransazione(make_unique<Tuscita>(104,"Playstation",500,"Sony"),testFile);
-    conto.eliminaTransazione(103);
+    bool x=conto.eliminaTransazione(103);
     ASSERT_EQ(conto.getSaldo(),1500);
-
+    ASSERT_EQ(x,false);
 }
