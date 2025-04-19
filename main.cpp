@@ -11,23 +11,24 @@ int main() {
     month m1{4};
     day d1{18};
 
-    conto.addTransazione(make_unique<Transazione>(true,12,"Babbo","Regalo",50,y1,m1,d1),file);
+    //conto.clearFile(file);
+    conto.letturaFile(file);
+    conto.stampaDaFile(file);
+
+   // conto.addTransazione(make_unique<Transazione>(true,12,"Babbo","Regalo",50,y1,m1,d1),file);
     conto.addTransazione(make_unique<Transazione>(false,13,"MC","Pranzo",20,y1,m1,d1),file);
-    conto.stampaTransazioni();
+    //conto.addTransazione(make_unique<Transazione>(true,15,"Nonna","Visita",10,year{2023},month{2},day{29}),file);
 
+    conto.stampaDaFile(file);
 
-
-
-  // conto.letturaFile(file);
-   // conto.clearFile(file);
-
-  /*  bool x=conto.eliminaTransazione(104);
+    bool x=conto.eliminaTransazione(13);
     if (x)
-        cout << "TRANSAZIONE RIMBORSATA!";
+        cout << "TRANSAZIONE RIMBORSATA!\n";
     else
-        cout << "TRANSAZIONE NON TROVATA!";*/
-    //conto.stampaDaFile(file);
+        cout << "TRANSAZIONE NON TROVATA!\n";
 
+    conto.stampaDaFile(file);
 
+   // conto.clearFile(file);
     return 0;
 }

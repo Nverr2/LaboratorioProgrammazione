@@ -14,7 +14,8 @@ class ContoCorrente {
     private:
        vector<unique_ptr<Transazione>>transazioni;
        double saldo;
-    void rimborso(const unique_ptr<Transazione>& t);
+        void rimborso(const unique_ptr<Transazione>& t);
+        void scritturaFile(const Transazione& t,const string& filename) const;
 
     public:
         ContoCorrente();
@@ -22,9 +23,9 @@ class ContoCorrente {
         void addTransazione(unique_ptr<Transazione> t,const string& filename);//bool
         void stampaTransazioni()const;
         void stampaDaFile(const string& filename)const;
-        void clearFile(const string& filename);
+        void clearFile(const string& filename) ;
         void letturaFile(const string& filename);
-        bool eliminaTransazione(const int k);
+        bool eliminaTransazione(int k);
         void updateFile(const string& filename) const;
         double getSaldo()const{
             return saldo;

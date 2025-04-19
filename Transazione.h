@@ -22,14 +22,9 @@ class Transazione{
         year_month_day data;
 
 
-
-
-    //data
-
     public:
         Transazione(bool tp,int identifier,string mitdest,string desc,double imp,year y, month m,day d);
         virtual ~Transazione() = default;
-        void stampa()const;
         double getImporto()const{return importo;}
         void setImporto(double imp){
             if (imp>0)

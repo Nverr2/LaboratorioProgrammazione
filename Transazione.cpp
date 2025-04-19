@@ -26,6 +26,3 @@ Transazione::Transazione(bool tp,int identifier, const string mitdest,const stri
     data=date;
 }
 
-void Transazione::stampa() const{
-    cout<<"ID: "<<id<<", Mit/dest: "<<md<<", Descrizione: "<<descrizione<<", Importo: "<<importo<<", Data: "<<data<<endl;
-}
