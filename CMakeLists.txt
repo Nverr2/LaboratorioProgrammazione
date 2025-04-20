@@ -25,6 +25,7 @@ add_executable(AppMain
 add_executable(AppTests
         test/test_main.cpp
         Transazione.h
+        Transazione.cpp
         ContoCorrente.cpp
         ContoCorrente.h
 )

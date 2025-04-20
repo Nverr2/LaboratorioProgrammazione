@@ -25,7 +25,7 @@ int main() {
    /* cout<<"\nRICERCA:\n";
     bool x1=conto.ricercaTransazione(ymd);*/
 
-    bool x=conto.eliminaTransazione(13);
+    bool x=conto.eliminaTransazione(13,file);
     if (x)
         cout << "TRANSAZIONE RIMBORSATA!\n";
     else

@@ -53,7 +53,6 @@ bool ContoCorrente::addTransazione(unique_ptr<Transazione> t, const string& file
                 cout<<"ID GIA' ASSEGNATO, IMPOSSIBILE AGGIUNGERE TRANSAZIONE!!!"<<endl;
                 return false;
             }
-
         }
     }
     if(t->getType()==false){   //verifico di avere un saldo sufficiente per effettuare la transazione
@@ -92,6 +91,7 @@ void ContoCorrente::clearFile(const string& filename)
 {
     try{
         ofstream outfile(filename, ios::trunc);
+        outfile.close();
     }
     catch(exception& ){
         cout << "errore pulizia file";
@@ -149,7 +149,7 @@ void ContoCorrente::letturaFile(const string& filename){
     }
 }
 
-bool ContoCorrente::eliminaTransazione(const int k){
+bool ContoCorrente::eliminaTransazione(const int k,const string& filename){
     bool found = false;
     int i=0;
     for (const auto& t : transazioni) {
@@ -165,23 +165,31 @@ bool ContoCorrente::eliminaTransazione(const int k){
         }
         i++;
     }
-    updateFile("fileTransazioni.txt");
+    updateFile(filename);
     return found;
 }
 void ContoCorrente::updateFile(const string& filename) const
 {
+
     try
     {
-        ofstream outfile(filename, ios::trunc);
-        for (const auto& t : transazioni){
-           scritturaFile(*t,filename);
+        if (transazioni.empty()){
+            ofstream outfile(filename, ios::trunc);
+            outfile.close();
         }
-        outfile.close();
+        else
+        {
+            ofstream outfile(filename, ios::trunc);
+            for (const auto& t : transazioni){
+                scritturaFile(*t,filename);
+                outfile.close();
+            }
+        }
+
     }catch (exception& e){
         cout << "ERRORE: " << e.what() << endl;
     }
 }
-
 
 bool ContoCorrente::ricercaTransazione(year_month_day data) const{    //stampa tutte le transazioni effettuate in un determinato giorno
     bool x=false;
@@ -204,7 +212,6 @@ bool ContoCorrente::ricercaTransazione(year_month_day data) const{    //stampa t
 
 bool ContoCorrente::modificaTransazione(const int k, const string& desc,const string& filename) const{
     bool mod=false;
-    int i=0;
     for (const auto& t : transazioni){
         if (t->getId()==k){
             t->setDescrizione(desc);

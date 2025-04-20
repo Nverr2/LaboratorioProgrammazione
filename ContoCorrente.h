@@ -26,7 +26,7 @@ class ContoCorrente {
         void stampaDaFile(const string& filename)const;
         void clearFile(const string& filename) ;
         void letturaFile(const string& filename);
-        bool eliminaTransazione(int k);
+        bool eliminaTransazione(int k,const string& filename);
         void updateFile(const string& filename) const;
         double getSaldo()const{return saldo;}
         bool ricercaTransazione(year_month_day data) const;
