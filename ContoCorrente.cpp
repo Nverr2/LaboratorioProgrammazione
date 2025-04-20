@@ -9,8 +9,7 @@
 ContoCorrente::ContoCorrente() {
     saldo=0;
 }
-ContoCorrente::~ContoCorrente()
-{}
+ContoCorrente::~ContoCorrente() = default;
 
 void ContoCorrente::stampaTransazioni() const {
     if(!transazioni.empty()){
@@ -23,13 +22,13 @@ void ContoCorrente::stampaTransazioni() const {
                 cout<<"USCITA, Id: "<<t->getId()<<", Dest: "<<t->getMitDest()<<", Descrizione: "<<t->getDescrizione()<<", Importo: "<<t->getImporto()<<", Data: "<<t->getData()<<endl;
             }
         }
-        cout << "Saldo attuale: " << saldo << " euro" << endl;
+        cout << "Saldo attuale: " << saldo << " euro" << ", Transazioni registrate: "<< numTransazioni() << endl;
     }
     else
         cout << "Nessuna transazione registrata, saldo: 0 euro" << endl;
 
 }
-void ContoCorrente::scritturaFile(const Transazione& t,const string& filename) const{
+void ContoCorrente::scritturaFile(const Transazione& t,const string& filename) {
 
     try{
         ofstream outfile(filename, ios::app);
@@ -47,17 +46,20 @@ void ContoCorrente::scritturaFile(const Transazione& t,const string& filename) c
 }
 
 
-void ContoCorrente::addTransazione(unique_ptr<Transazione> t, const string& filename) {
+bool ContoCorrente::addTransazione(unique_ptr<Transazione> t, const string& filename) {
     if (!transazioni.empty()){
         for (const auto& t2 : transazioni){
-            if (t->getId()==t2->getId())
-                throw runtime_error("ID GIA' ASSEGNATO, IMPOSSIBILE AGGIUNGERE TRANSAZIONE!!!");
+            if (t->getId()==t2->getId()){
+                cout<<"ID GIA' ASSEGNATO, IMPOSSIBILE AGGIUNGERE TRANSAZIONE!!!"<<endl;
+                return false;
+            }
+
         }
     }
     if(t->getType()==false){   //verifico di avere un saldo sufficiente per effettuare la transazione
         if(saldo+(t->getImporto())<0){
             cout << "Saldo insufficiente per effettuare la transazione!" << endl;
-            return;
+            return false;
         }
     }
 
@@ -66,6 +68,7 @@ void ContoCorrente::addTransazione(unique_ptr<Transazione> t, const string& file
     scritturaFile(*t,filename);         //salvo la transazione nel file subito dopo averla aggiunta al vector
     transazioni.push_back(move(t));
     cout << "TRANSAZIONE REGISTRATA!" << endl;
+    return true;
 }
 
 void ContoCorrente::stampaDaFile(const string& filename) const {
@@ -77,7 +80,7 @@ void ContoCorrente::stampaDaFile(const string& filename) const {
             cout << line << endl;
         }
 
-       cout << "Saldo attuale: " << saldo << " euro" << endl;
+       cout << "Saldo attuale: " << saldo << " euro" << ", Transazioni registrate: "<< numTransazioni() <<endl;
         infile.close();
     }
     catch(exception&){
@@ -179,11 +182,47 @@ void ContoCorrente::updateFile(const string& filename) const
     }
 }
 
-void ContoCorrente::rimborso(const unique_ptr<Transazione>& t)
-{
-    saldo=saldo-(t->getImporto());  //vista la struttura del progetto i casi pos/neg combaciano(da controllare dopo le modifiche)
 
+bool ContoCorrente::ricercaTransazione(year_month_day data) const{    //stampa tutte le transazioni effettuate in un determinato giorno
+    bool x=false;
+    int i=0;
+    for (const auto& t : transazioni){
+        if (t->getData()==data){
+            i++;
+            x=true;
+            if (t->getType()){  //transazione in ingresso
+                cout<<"INGRESSO, Id: "<<t->getId()<<", Mit: "<<t->getMitDest()<<", Descrizione: "<<t->getDescrizione()<<", Importo: "<<t->getImporto()<<", Data: "<<t->getData()<<endl;
+            }
+            else{   //transazione in uscita
+                cout<<"USCITA, Id: "<<t->getId()<<", Dest: "<<t->getMitDest()<<", Descrizione: "<<t->getDescrizione()<<", Importo: "<<t->getImporto()<<", Data: "<<t->getData()<<endl;
+            }
+        }
+    }
+    cout << "Ricerca terminata, transazioni trovate: "<<i<<endl;
+    return x;
 }
+
+bool ContoCorrente::modificaTransazione(const int k, const string& desc,const string& filename) const{
+    bool mod=false;
+    int i=0;
+    for (const auto& t : transazioni){
+        if (t->getId()==k){
+            t->setDescrizione(desc);
+            mod=true;
+            updateFile(filename);
+        }
+    }
+    return mod;
+}
+
+void ContoCorrente::rimborso(const unique_ptr<Transazione>& t){
+    saldo=saldo-(t->getImporto());  //vista la struttura del progetto i casi pos/neg combaciano(da controllare dopo le modifiche)
+}
+
+int ContoCorrente::numTransazioni() const{
+    return static_cast<int>(transazioni.size());
+}
+
 
 
 

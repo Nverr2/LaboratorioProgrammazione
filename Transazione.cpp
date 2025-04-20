@@ -1,9 +1,8 @@
 #include "Transazione.h"
 
-#include <utility>
 using namespace std;
 
-Transazione::Transazione(bool tp,int identifier, const string mitdest,const string desc, double imp,year y,month m,day d): type(tp),id(identifier),md(mitdest),descrizione(desc){
+Transazione::Transazione(const bool tp, const int identifier, const string& mitdest,const string& desc, double imp,year y,month m,day d): id(identifier),descrizione(desc),md(mitdest),type(tp){
     while (imp<=0){
         cout<<"Importo non accettabile!\nInserire importo positivo: ";
         cin>>imp;
@@ -25,4 +24,3 @@ Transazione::Transazione(bool tp,int identifier, const string mitdest,const stri
     }
     data=date;
 }
-

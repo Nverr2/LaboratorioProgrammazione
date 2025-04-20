@@ -23,19 +23,13 @@ class Transazione{
 
 
     public:
-        Transazione(bool tp,int identifier,string mitdest,string desc,double imp,year y, month m,day d);
+        Transazione(bool tp,int identifier, const string& mitdest,const string& desc,double imp,year y, month m,day d);
         virtual ~Transazione() = default;
         double getImporto()const{return importo;}
-        void setImporto(double imp){
-            if (imp>0)
-                importo = imp;
-            else
-                cout<<"Importo non accettabile!";
-        }
         bool getType()const{return type;}
         int getId()const{return id;}
         string getDescrizione()const{return descrizione;}
-        void setDescrizione(string desc){descrizione=desc;}
+        void setDescrizione(const string& desc){descrizione=desc;}
         year_month_day getData()const{return data;}
         string getMitDest()const{return md;}
 
