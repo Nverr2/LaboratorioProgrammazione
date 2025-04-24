@@ -5,7 +5,7 @@
 // Le classi devono essere in grado di leggere e salvare i dati su file.
 
 int main() {
-    ContoCorrente conto;
+    ContoCorrente conto("LabProg1");
     string file="fileTransazioni.txt";
     year y1{2025};
     month m1{4};
@@ -19,20 +19,6 @@ int main() {
     conto.addTransazione(make_unique<Transazione>(true,12,"Babbo","Regalo",50,y1,m1,d1),file);
     conto.addTransazione(make_unique<Transazione>(false,13,"MC","Pranzo",20,y1,m1,d1),file);
     //conto.addTransazione(make_unique<Transazione>(true,15,"Nonna","Visita",10,year{2023},month{2},day{29}),file);
-
-    conto.stampaDaFile(file);
-
-   /* cout<<"\nRICERCA:\n";
-    bool x1=conto.ricercaTransazione(ymd);*/
-
-    bool x=conto.eliminaTransazione(13,file);
-    if (x)
-        cout << "TRANSAZIONE RIMBORSATA!\n";
-    else
-        cout << "TRANSAZIONE NON TROVATA!\n";
-
-    /* cout<<"\nRICERCA:\n";
-    bool x2=conto.modificaTransazione(12,"Lapo",file);*/
 
     conto.stampaDaFile(file);
 

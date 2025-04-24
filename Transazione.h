@@ -21,7 +21,6 @@ class Transazione{
         bool type; //true=ingresso, false=uscita
         year_month_day data;
 
-
     public:
         Transazione(bool tp,int identifier, const string& mitdest,const string& desc,double imp,year y, month m,day d);
         virtual ~Transazione() = default;
