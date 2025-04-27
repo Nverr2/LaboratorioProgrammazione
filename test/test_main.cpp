@@ -6,8 +6,7 @@
 
 
 using namespace std;
-
-const string testFile = "test_transazioni.txt";
+string testFile = "test_transazioni.txt";
 
 TEST(AddTransazione,TransazioneIngresso){
     ContoCorrente conto("ContoTest");
@@ -18,9 +17,19 @@ TEST(AddTransazione,TransazioneIngresso){
     ASSERT_EQ(true,x);
 }
 
+TEST(AddTransazione,TransazioneImpossibile){
+    ContoCorrente conto("ContoTest");
+
+    bool x1=conto.addTransazione(make_unique<Transazione>(true,100,"Nonna","Visita",10,year{2023},month{8},day{24}),testFile);
+
+    ASSERT_EQ(true,x1);
+    EXPECT_THROW(conto.addTransazione(make_unique<Transazione>(true,100,"Nonna","Visita",10,year{2023},month{8},day{24}),testFile),runtime_error);
+}
+
 TEST(AddTransazione, SaldoInsufficiente){
     ContoCorrente conto("ContoTest");
     bool x=conto.addTransazione(make_unique<Transazione>(false,101,"Ristorante","Pranzo",10,year{2024},month{7},day{12}),testFile);
+
     ASSERT_EQ(conto.getSaldo(),0);
     ASSERT_EQ(false,x);
 }
@@ -47,8 +56,10 @@ TEST(EliminaTransazione, EliminazioneRiuscita){
     if (file.peek()==istream::traits_type::eof()){
         x1=true;
     }
+
     ASSERT_EQ(true,x2); //transazione aggiunta con successo
     ASSERT_EQ(true,x3); //eliminazione avvenut con successo
+    ASSERT_EQ(0,conto.numTransazioni(conto.getTransazioni()));//controllo num transazioni corretto
     ASSERT_EQ(true,x1); //modifica del file avvenuta con successo
 }
 
@@ -64,7 +75,7 @@ TEST(EliminaTransazione, EliminazioneFallita){
     ASSERT_EQ(false,x3); //impossibile rimborsare lo stipendio per saldo insufficiente
 }
 
-TEST(AddTransazione,ScritturaFile){
+TEST(ScritturaFile,ScritturaRiuscita){
     ContoCorrente conto("ContoTest");
     bool x=true;
 
@@ -74,8 +85,16 @@ TEST(AddTransazione,ScritturaFile){
     if (file.peek()==istream::traits_type::eof()){
         x=false;
     }
+
     ASSERT_EQ(true,x1);
     ASSERT_EQ(true,x);  //file non vuoto, scrittura avvenuta
+}
+
+TEST(ScritturaFile,ScritturaFallita){
+    ContoCorrente conto("ContoTest");
+    string fakeFile="/cartellaInesistente/file.txt";
+
+    EXPECT_THROW(conto.addTransazione(make_unique<Transazione>(true,200,"Lavoro","Stipendio",500,year{2025},month{4},day{20}),fakeFile),runtime_error);
 }
 
 TEST(RicercaTransazioni,TransazioneTrovata){

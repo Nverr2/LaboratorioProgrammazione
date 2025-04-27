@@ -6,8 +6,6 @@
 #define LABORATORIOPROGRAMMAZIONE_TRANSAZIONE_H
 
 #include <string>
-#include "iostream"
-#include "fstream"
 #include <chrono>
 
 using namespace std;

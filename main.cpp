@@ -18,7 +18,9 @@ int main() {
 
    // conto.addTransazione(make_unique<Transazione>(true,12,"Babbo","Regalo",50,y1,m1,d1),file);
    // conto.addTransazione(make_unique<Transazione>(false,13,"MC","Pranzo",20,y1,m1,d1),file);
-    //conto.addTransazione(make_unique<Transazione>(true,15,"Nonna","Visita",10,year{2023},month{2},day{29}),file);
+   // conto.addTransazione(make_unique<Transazione>(true,15,"Nonna","Visita",10,year{2023},month{2},day{29}),file);
+
+   // conto.modificaTransazione(12,"Regalo",file);
 
    // conto.stampaDaFile(file);
 

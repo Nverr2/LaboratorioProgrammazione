@@ -4,15 +4,15 @@
 
 #include "ContoCorrente.h"
 #include <sstream>
+#include <iostream>
 #include "Transazione.h"
 
-ContoCorrente::ContoCorrente(string n) : nome(n){
+ContoCorrente::ContoCorrente(const string& n) : nome(n){
     saldo=0;
 }
 ContoCorrente::~ContoCorrente() = default;
 
 void ContoCorrente::scritturaFile(const Transazione& t,const string& filename) const{
-
         ofstream outfile(filename, ios::app);
         if (!outfile)
             throw runtime_error("Errore scrittura file");
@@ -46,15 +46,15 @@ bool ContoCorrente::addTransazione(unique_ptr<Transazione> t, const string& file
 
 void ContoCorrente::stampaDaFile(const string& filename) const{
     cout << "\nSTAMPA DA FILE:\n";
-        ifstream infile(filename);
-        if (!infile)
-            throw runtime_error("Errore lettura file");
-        string line;
-        while (getline(infile,line)){
-            cout << line << endl;
-        }
-       cout << "Saldo attuale: " << saldo << " euro" << ", Transazioni registrate: "<< numTransazioni(this->getTransazioni()) <<endl;
-        infile.close();
+    ifstream infile(filename);
+    if (!infile)
+        throw runtime_error("Errore lettura file");
+    string line;
+    while (getline(infile,line)){
+        cout << line << endl;
+    }
+    cout << "Saldo attuale: " << saldo << " euro" << ", Transazioni registrate: "<< numTransazioni(this->getTransazioni()) <<endl;
+    infile.close();
 }
 
 void ContoCorrente::clearFile(const string& filename) const{
@@ -104,7 +104,6 @@ void ContoCorrente::letturaFile(const string& filename){
             temp=make_unique<Transazione>(tipo,id,md,desc,imp,ymd1.year(),ymd1.month(),ymd1.day());
             transazioni.push_back(move(temp));
         }
-        cout << "LETTURA FILE COMPLETATA!" << endl;
     }
     catch(exception& e){
         cerr << "ERRORE: " << e.what() << endl;
@@ -114,7 +113,7 @@ void ContoCorrente::letturaFile(const string& filename){
 bool ContoCorrente::eliminaTransazione(const int k,const string& filename){
     bool found = false;
     int i=0;
-    for (const auto& t : transazioni) {
+    for ( auto& t : transazioni) {
         if (t->getId()==k){                 //transazione trovata, procedo ad eliminare
             if (saldo-(t->getImporto())<0){ //non posso rimborsare più soldi di quanti ne posseggo
                 return false;
@@ -159,9 +158,9 @@ vector<unique_ptr<Transazione>> ContoCorrente::ricercaTransazione(year_month_day
     return move(found);
 }
 
-bool ContoCorrente::modificaTransazione(const int k, const string& desc,const string& filename) const{
+bool ContoCorrente::modificaTransazione(const int k, const string& desc,const string& filename){
     bool mod=false;
-    for (const auto& t : transazioni){
+    for (auto& t : transazioni){
         if (t->getId()==k){
             t->setDescrizione(desc);
             mod=true;

@@ -5,10 +5,12 @@
 #ifndef LABORATORIOPROGRAMMAZIONE_CONTOCORRENTE_H
 #define LABORATORIOPROGRAMMAZIONE_CONTOCORRENTE_H
 #include <memory>
-
-using namespace std;
+#include "fstream"
 #include "vector"
 #include "Transazione.h"
+
+using namespace std;
+
 
 class ContoCorrente {
     private:
@@ -19,7 +21,7 @@ class ContoCorrente {
         void scritturaFile(const Transazione& t,const string& filename) const;
 
     public:
-        ContoCorrente(string n);
+        explicit ContoCorrente(const string& n);
         ~ContoCorrente();
         bool addTransazione(unique_ptr<Transazione> t,const string& filename);
         void stampaDaFile(const string& filename)const;
@@ -30,7 +32,7 @@ class ContoCorrente {
         double getSaldo()const{return saldo;}
         const vector<unique_ptr<Transazione>>& getTransazioni() const{return transazioni;}
         vector<unique_ptr<Transazione>> ricercaTransazione(year_month_day data) const;
-        bool modificaTransazione(int k,const string& desc,const string& filename) const;
+        bool modificaTransazione(int k,const string& desc,const string& filename);
         int numTransazioni(const vector<unique_ptr<Transazione>>& t) const;
 };
 
